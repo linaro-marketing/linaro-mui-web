@@ -21,6 +21,7 @@ const NavBarLogo = ({ logo, title }) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            width: "100px",
             mr: 2,
             "& img": {
               width: "100px",
@@ -78,9 +79,26 @@ const NavBar: React.FC<NavBarProps> = ({ pages, logo }) => {
   return (
     <AppBar color="default" elevation={1} position="static">
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <NavBarLogo logo={logo} title="Linaro" />
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+        <Toolbar
+          disableGutters
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Box>
+            <NavBarLogo logo={logo} title="Linaro" />
+          </Box>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "flex", md: "none" },
+              justifyContent: "flex-end",
+              alignItems: "center",
+            }}
+          >
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -116,25 +134,34 @@ const NavBar: React.FC<NavBarProps> = ({ pages, logo }) => {
               ))}
             </Menu>
           </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
+          <Box
             sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
+              justifyContent: "flex-end",
+              alignItems: "center",
+              display: { xs: "none", md: "flex" },
             }}
           >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <div onMouseLeave={handleCloseUserMenu}>
+              <Button
+                onClick={handleOpenUserMenu}
+                color="inherit"
+                onMouseOver={handleOpenUserMenu}
+              >
+                {"test"}
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorElUser}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem onClick={handleCloseUserMenu}>Profile</MenuItem>
+                <MenuItem onClick={handleCloseUserMenu}>My account</MenuItem>
+                <MenuItem onClick={handleCloseUserMenu}>Logout</MenuItem>
+              </Menu>
+            </div>
+
             {pages.map((page, index) => (
               <Button key={index} onClick={handleCloseNavMenu}>
                 {page.name}
