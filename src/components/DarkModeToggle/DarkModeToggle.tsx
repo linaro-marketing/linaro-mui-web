@@ -2,7 +2,6 @@
 import React from "react";
 import IconButton from "@mui/material/IconButton";
 import { dashboardLinksIconMapper } from "lib/icons";
-
 import { DarkModeToggleProps } from "./DarkModeToggle.types";
 const DarkModeToggle: React.FC<DarkModeToggleProps> = ({
   variant,

@@ -6,8 +6,9 @@ describe("NavBar Test", () => {
   test("renders the Navbar component", () => {
     render(
       <NavBar
-        settings={[{ name: "Baz", link: "/Baz" }]}
-        pages={[{ name: "Baz", link: "/Baz" }]}
+        logoLink={"/"}
+        logo={"test"}
+        pages={[{ title: "Baz", link: "/Baz" }]}
       />
     );
   });

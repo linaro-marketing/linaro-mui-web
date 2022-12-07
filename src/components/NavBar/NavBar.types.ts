@@ -4,7 +4,7 @@ export interface NavBarProps extends AppBarProps {
   /**
    * The link that the logo will point to.
    */
-  logoLink?: string;
+  logoLink: string;
   /**
    * The site title fallback if no logo is provided.
    */

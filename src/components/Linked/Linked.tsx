@@ -13,12 +13,7 @@ const Linked: React.FC<LinkedProps> = React.forwardRef((props, ref) => {
     <Box
       component={Link}
       {...rest}
-      sx={[
-        { color: "inherit" },
-        textLink && {
-          color: (theme) => theme.palette.primary.main,
-        },
-      ]}
+      sx={[{ color: "inherit" }]}
       ref={ref}
       target={
         to.startsWith("/") && !target ? "_self" : target ? target : "_blank"

@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { NavBarProps } from "./NavBar.types";
 import Linked from "components/Linked/Linked";
 
-const NavBarLogo = ({ logo, title }: { logo: string; title: string }) => {
+const NavBarLogo = ({ logo, title }: { logo?: string; title: string }) => {
   return (
     <>
       {logo && (

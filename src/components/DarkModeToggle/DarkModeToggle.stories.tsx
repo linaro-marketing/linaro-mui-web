@@ -2,7 +2,7 @@
 import React from "react";
 import DarkModeToggle from "./DarkModeToggle";
 export default {
-  title: "DarkModeToggle",
+  title: "Core/DarkModeToggle",
 };
 export const WithBar = () => (
   <DarkModeToggle

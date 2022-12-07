@@ -2,7 +2,7 @@
 import React from "react";
 import Linked from "./Linked";
 export default {
-  title: "Linked",
+  title: "Core/Linked",
   component: Linked,
   argTypes: {
     to: {
