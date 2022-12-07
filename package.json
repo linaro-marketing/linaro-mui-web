@@ -7,7 +7,7 @@
   "description": "A simple template for a custom React component library",
   "scripts": {
     "build": "rollup -c",
-    "test": "jest",
+    "test": "jest --verbose",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -49,7 +49,7 @@
     "@storybook/react": "^6.5.9",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
-    "@types/jest": "^28.1.6",
+    "@types/jest": "^28.2.4",
     "@types/react": "^18.0.15",
     "babel-jest": "^27.3.1",
     "babel-loader": "^8.2.3",
@@ -57,8 +57,8 @@
     "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^26",
-    "jest-environment-jsdom": "^26",
+    "jest": "^28",
+    "jest-environment-jsdom": "^28",
     "jsdom": "^20.0.3",
     "next": "^13.0.6",
     "next-seo": "^5.15.0",
@@ -73,9 +73,11 @@
     "sass": "^1.43.5",
     "sass-loader": "^12.3.0",
     "style-loader": "^3.3.1",
-    "ts-jest": "^26.5.6",
+    "ts-jest": "^28",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths-jest": "^0.0.1",
     "tsconfig-paths-webpack-plugin": "^4.0.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.9.3"
   },
   "files": [
     "build"
