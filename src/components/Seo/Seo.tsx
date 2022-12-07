@@ -1,6 +1,7 @@
 import React from "react";
 import { NextSeo, DefaultSeo } from "next-seo";
 import PropTypes from "prop-types";
+import { createCanonical } from "lib/seo";
 /**
  * SEO component
  * @param {Object} props
@@ -9,7 +10,8 @@ import PropTypes from "prop-types";
 const Seo = (props) => {
   const {
     title,
-    canonical,
+    pageId,
+    language,
     titleTemplate = "%s | Linaro Mui Web",
     ...rest
   } = props;
@@ -17,7 +19,7 @@ const Seo = (props) => {
     <NextSeo
       titleTemplate={titleTemplate}
       defaultTitle={title}
-      canonical={canonical}
+      canonical={createCanonical(pageId, language)}
       {...rest}
     />
   );

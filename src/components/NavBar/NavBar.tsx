@@ -11,8 +11,9 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { NavBarProps } from "./NavBar.types";
+import Linked from "components/Linked/Linked";
 
-const NavBarLogo = ({ logo, title }) => {
+const NavBarLogo = ({ logo, title }: { logo: string; title: string }) => {
   return (
     <>
       {logo && (
@@ -56,7 +57,13 @@ const NavBarLogo = ({ logo, title }) => {
   );
 };
 
-const NavBar: React.FC<NavBarProps> = ({ pages, logo }) => {
+const NavBar: React.FunctionComponent<NavBarProps> = ({
+  pages,
+  logoLink,
+  logo,
+  title = "Linaro",
+  ...rest
+}) => {
   const [anchorElNav, setAnchorElNav] =
     React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] =
@@ -77,7 +84,7 @@ const NavBar: React.FC<NavBarProps> = ({ pages, logo }) => {
     setAnchorElUser(null);
   };
   return (
-    <AppBar color="default" elevation={1} position="static">
+    <AppBar color="default" elevation={1} position="static" {...rest}>
       <Container maxWidth="xl">
         <Toolbar
           disableGutters
@@ -89,7 +96,9 @@ const NavBar: React.FC<NavBarProps> = ({ pages, logo }) => {
           }}
         >
           <Box>
-            <NavBarLogo logo={logo} title="Linaro" />
+            <Linked to={logoLink}>
+              <NavBarLogo logo={logo} title={title} />
+            </Linked>
           </Box>
           <Box
             sx={{
@@ -129,7 +138,7 @@ const NavBar: React.FC<NavBarProps> = ({ pages, logo }) => {
             >
               {pages.map((page, index) => (
                 <MenuItem key={index} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page.name}</Typography>
+                  <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -163,8 +172,16 @@ const NavBar: React.FC<NavBarProps> = ({ pages, logo }) => {
             </div>
 
             {pages.map((page, index) => (
-              <Button key={index} onClick={handleCloseNavMenu}>
-                {page.name}
+              <Button
+                key={index}
+                sx={{
+                  textTransform: "none",
+                  fontSize: "1rem",
+                }}
+                color="inherit"
+                onClick={handleCloseNavMenu}
+              >
+                {page.title}
               </Button>
             ))}
           </Box>

@@ -3,28 +3,32 @@ import React from "react";
 import NavBar from "./NavBar";
 export default {
   title: "NavBar",
+  component: NavBar,
 };
-export const WithBar = () => (
+export const Primary = () => (
   <NavBar
     logo="https://www.linaro.org/assets/images/Linaro-Logo.svg"
+    logoLink="/"
+    color="primary"
     pages={[
-      { name: "About", link: "/about" },
-      { name: "Projects", link: "/projects" },
-      { name: "Solutions", link: "/solutions" },
-      { name: "Services", link: "/services" },
-      { name: "Resources", link: "/resources" },
+      { title: "About", link: "/about" },
+      { title: "Projects", link: "/projects" },
+      { title: "Solutions", link: "/solutions" },
+      { title: "Services", link: "/services" },
+      { title: "Resources", link: "/resources" },
     ]}
   />
 );
-export const WithBaz = () => (
+export const Secondary = () => (
   <NavBar
+    logoLink="/"
     logo="https://www.linaro.org/assets/images/Linaro-Logo.svg"
     pages={[
-      { name: "About", link: "/about" },
-      { name: "Projects", link: "/projects" },
-      { name: "Solutions", link: "/solutions" },
-      { name: "Services", link: "/services" },
-      { name: "Resources", link: "/resources" },
+      { title: "About", link: "/about" },
+      { title: "Projects", link: "/projects" },
+      { title: "Solutions", link: "/solutions" },
+      { title: "Services", link: "/services" },
+      { title: "Resources", link: "/resources" },
     ]}
   />
 );
