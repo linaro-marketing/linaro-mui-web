@@ -3,6 +3,7 @@
     // Default
     "baseUrl": "./src/",
     "target": "es5",
+    "allowJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
