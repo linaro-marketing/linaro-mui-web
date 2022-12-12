@@ -1,5 +1,5 @@
 // Generated with util/create-component.js
-import React, { useState } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { NavBarProps } from "./NavBar.types";
 import Linked from "components/Linked/Linked";
+import DropdownMenuItem from "components/DropdownMenuItem/DropdownMenuItem";
 
 const NavBarLogo = ({ logo, title }: { logo?: string; title: string }) => {
   return (
@@ -75,7 +76,10 @@ const NavBar: React.FunctionComponent<NavBarProps> = ({
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
-
+  const [menuShowingDropdown, setMenuShowingDropdown] = useState("");
+  const handleMenuShowingDropdownChange = useCallback((menuTitle: string) => {
+    setMenuShowingDropdown(menuTitle);
+  }, []);
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
@@ -170,20 +174,76 @@ const NavBar: React.FunctionComponent<NavBarProps> = ({
                 <MenuItem onClick={handleCloseUserMenu}>Logout</MenuItem>
               </Menu>
             </div>
+            <DropdownMenuItem
+              menuItem={{
+                title: "Products",
+                subMenus: [
+                  {
+                    title: "Linaro Connect",
+                    pathname: "/products/linaro-connect",
+                  },
+                  {
+                    title: "Linaro Engineering",
+                    pathname: "/products/linaro-engineering",
+                  },
+                ],
+              }}
+              menuShowingDropdown={menuShowingDropdown}
+              setMenuShowingDropdown={handleMenuShowingDropdownChange}
+            />
+            <DropdownMenuItem
+              menuItem={{
+                title: "Solutions",
+                subMenus: [
+                  {
+                    title: "Linaro Connect",
+                    pathname: "/products/linaro-connect",
+                  },
+                  {
+                    title: "Linaro Engineering",
+                    pathname: "/products/linaro-engineering",
+                  },
+                ],
+              }}
+              menuShowingDropdown={menuShowingDropdown}
+              setMenuShowingDropdown={handleMenuShowingDropdownChange}
+            />
 
-            {pages.map((page, index) => (
-              <Button
-                key={index}
-                sx={{
-                  textTransform: "none",
-                  fontSize: "1rem",
-                }}
-                color="inherit"
-                onClick={handleCloseNavMenu}
-              >
-                {page.title}
-              </Button>
-            ))}
+            {pages.map((page, index) => {
+              if (page?.link) {
+                return (
+                  <Linked to={page.link} key={index}>
+                    <Button
+                      key={index}
+                      sx={{
+                        textTransform: "none",
+                        fontSize: "1rem",
+                      }}
+                      color="inherit"
+                      component="span"
+                      onClick={handleCloseNavMenu}
+                    >
+                      {page.title}
+                    </Button>
+                  </Linked>
+                );
+              } else {
+                return (
+                  <Button
+                    key={index}
+                    sx={{
+                      textTransform: "none",
+                      fontSize: "1rem",
+                    }}
+                    color="inherit"
+                    component="span"
+                    onClick={handleCloseNavMenu}
+                  >
+                    {page.title}
+                  </Button>
+                );
+              }
+            })}
           </Box>
         </Toolbar>
       </Container>
