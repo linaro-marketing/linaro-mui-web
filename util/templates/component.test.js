@@ -5,7 +5,7 @@ module.exports = (componentName) => ({
   import ${componentName} from "./${componentName}";
   import { ${componentName}Props } from "./${componentName}.types";
   describe("${componentName} Test", () => {
-    test("renders the Navbar component", () => {
+    test("renders the ${componentName} component", () => {
       render(<${componentName} />);
     });
   });
