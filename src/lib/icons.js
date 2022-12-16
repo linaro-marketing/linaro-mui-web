@@ -116,44 +116,44 @@ export const dashboardLinksIconMapper = {
   playFromStart: BsFillSkipStartFill,
   play: BsFillPlayFill,
 };
-export const IconWrapper = ({
-  icon,
-  size,
-  color,
-  relative = false,
-  button = false,
-  ...props
-}) => {
-  const CustomIcon = dashboardLinksIconMapper[icon];
-  const iconColor = color || "inherit";
-  return button ? (
-    <IconButton {...props}>
-      <CustomIcon size={size} />
-    </IconButton>
-  ) : (
-    <Icon
-      size={size}
-      sx={[
-        relative && {
-          position: "relative",
-          "& svg": {
-            position: "absolute",
-            top: 0,
-            left: 0,
-            color: "inherit",
-          },
-        },
-      ]}
-      {...props}
-    >
-      <CustomIcon size={size} color={iconColor} />
-    </Icon>
-  );
-};
-IconWrapper.propTypes = {
-  icon: PropTypes.string.isRequired,
-  size: PropTypes.number,
-  color: PropTypes.string,
-  relative: PropTypes.bool,
-  button: PropTypes.bool,
-};
+// export const IconWrapper = ({
+//   icon,
+//   size,
+//   color,
+//   relative = false,
+//   button = false,
+//   ...props
+// }) => {
+//   const CustomIcon = dashboardLinksIconMapper[icon];
+//   const iconColor = color || "inherit";
+//   return button ? (
+//     <IconButton {...props}>
+//       <CustomIcon size={size} />
+//     </IconButton>
+//   ) : (
+//     <Icon
+//       size={size}
+//       sx={[
+//         relative && {
+//           position: "relative",
+//           "& svg": {
+//             position: "absolute",
+//             top: 0,
+//             left: 0,
+//             color: "inherit",
+//           },
+//         },
+//       ]}
+//       {...props}
+//     >
+//       <CustomIcon size={size} color={iconColor} />
+//     </Icon>
+//   );
+// };
+// IconWrapper.propTypes = {
+//   icon: PropTypes.string.isRequired,
+//   size: PropTypes.number,
+//   color: PropTypes.string,
+//   relative: PropTypes.bool,
+//   button: PropTypes.bool,
+// };
