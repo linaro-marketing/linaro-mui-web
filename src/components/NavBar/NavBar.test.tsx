@@ -8,7 +8,7 @@ describe("NavBar Test", () => {
       <NavBar
         logoLink={"/"}
         logo={"test"}
-        pages={[{ title: "Baz", link: "/Baz" }]}
+        pages={[{ title: "Baz", pathname: "/Baz" }]}
       />
     );
   });

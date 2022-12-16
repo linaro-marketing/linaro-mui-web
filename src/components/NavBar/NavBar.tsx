@@ -5,14 +5,15 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
 import { NavBarProps } from "./NavBar.types";
 import Linked from "components/Linked/Linked";
 import DropdownMenuItem from "components/DropdownMenuItem/DropdownMenuItem";
+import DrawerLinks from "components/DrawerLinks/DrawerLinks";
+import Drawer from "@mui/material/Drawer";
 
 const NavBarLogo = ({ logo, title }: { logo?: string; title: string }) => {
   return (
@@ -65,154 +66,93 @@ const NavBar: React.FunctionComponent<NavBarProps> = ({
   title = "Linaro",
   ...rest
 }) => {
-  const [anchorElNav, setAnchorElNav] =
-    React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] =
-    React.useState<null | HTMLElement>(null);
+  const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
   const [menuShowingDropdown, setMenuShowingDropdown] = useState("");
   const handleMenuShowingDropdownChange = useCallback((menuTitle: string) => {
     setMenuShowingDropdown(menuTitle);
   }, []);
+
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setDrawerOpen(true);
+  };
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+    setDrawerOpen(false);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
   return (
-    <AppBar color="default" elevation={1} position="static" {...rest}>
-      <Container maxWidth="xl">
-        <Toolbar
-          disableGutters
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <Box>
-            <Linked to={logoLink}>
-              <NavBarLogo logo={logo} title={title} />
-            </Linked>
-          </Box>
-          <Box
+    <>
+      <AppBar color="default" elevation={1} position="static" {...rest}>
+        <Container maxWidth="xl">
+          <Toolbar
+            disableGutters
             sx={{
-              flexGrow: 1,
-              display: { xs: "flex", md: "none" },
-              justifyContent: "flex-end",
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
               alignItems: "center",
             }}
           >
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+            <Box>
+              <Linked to={logoLink}>
+                <NavBarLogo logo={logo} title={title} />
+              </Linked>
+            </Box>
+            <Box
               sx={{
-                display: { xs: "block", md: "none" },
+                flexGrow: 1,
+                display: { xs: "flex", md: "none" },
+                justifyContent: "flex-end",
+                alignItems: "center",
               }}
             >
-              {pages.map((page, index) => (
-                <MenuItem key={index} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page.title}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <Box
-            sx={{
-              flexGrow: 1,
-              justifyContent: "flex-end",
-              alignItems: "center",
-              display: { xs: "none", md: "flex" },
-            }}
-          >
-            <div onMouseLeave={handleCloseUserMenu}>
-              <Button
-                onClick={handleOpenUserMenu}
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
                 color="inherit"
-                onMouseOver={handleOpenUserMenu}
               >
-                {"test"}
-              </Button>
-              <Menu
-                id="simple-menu"
-                anchorEl={anchorElUser}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                <MenuItem onClick={handleCloseUserMenu}>Profile</MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>My account</MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>Logout</MenuItem>
-              </Menu>
-            </div>
-            <DropdownMenuItem
-              menuItem={{
-                title: "Products",
-                subMenus: [
-                  {
-                    title: "Linaro Connect",
-                    pathname: "/products/linaro-connect",
-                  },
-                  {
-                    title: "Linaro Engineering",
-                    pathname: "/products/linaro-engineering",
-                  },
-                ],
+                <MenuIcon />
+              </IconButton>
+            </Box>
+            <Box
+              sx={{
+                flexGrow: 1,
+                justifyContent: "flex-end",
+                alignItems: "center",
+                display: { xs: "none", md: "flex" },
               }}
-              menuShowingDropdown={menuShowingDropdown}
-              setMenuShowingDropdown={handleMenuShowingDropdownChange}
-            />
-            <DropdownMenuItem
-              menuItem={{
-                title: "Solutions",
-                subMenus: [
-                  {
-                    title: "Linaro Connect",
-                    pathname: "/products/linaro-connect",
-                  },
-                  {
-                    title: "Linaro Engineering",
-                    pathname: "/products/linaro-engineering",
-                  },
-                ],
-              }}
-              menuShowingDropdown={menuShowingDropdown}
-              setMenuShowingDropdown={handleMenuShowingDropdownChange}
-            />
-
-            {pages.map((page, index) => {
-              if (page?.link) {
-                return (
-                  <Linked to={page.link} key={index}>
+            >
+              {pages.map((page, index) => {
+                if (page?.pathname) {
+                  return (
+                    <Linked to={page.pathname} key={index}>
+                      <Button
+                        key={index}
+                        sx={{
+                          textTransform: "none",
+                          fontSize: "1rem",
+                        }}
+                        color="inherit"
+                        component="span"
+                        onClick={handleCloseNavMenu}
+                      >
+                        {page.title}
+                      </Button>
+                    </Linked>
+                  );
+                } else if (page?.subMenus) {
+                  return (
+                    <DropdownMenuItem
+                      menuItem={page}
+                      menuShowingDropdown={menuShowingDropdown}
+                      setMenuShowingDropdown={handleMenuShowingDropdownChange}
+                    />
+                  );
+                } else {
+                  return (
                     <Button
                       key={index}
                       sx={{
@@ -225,29 +165,62 @@ const NavBar: React.FunctionComponent<NavBarProps> = ({
                     >
                       {page.title}
                     </Button>
-                  </Linked>
-                );
-              } else {
-                return (
-                  <Button
-                    key={index}
-                    sx={{
-                      textTransform: "none",
-                      fontSize: "1rem",
-                    }}
-                    color="inherit"
-                    component="span"
-                    onClick={handleCloseNavMenu}
-                  >
-                    {page.title}
-                  </Button>
-                );
-              }
-            })}
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+                  );
+                }
+              })}
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+      <Drawer
+        variant="temporary"
+        anchor={"left"}
+        open={drawerOpen}
+        onClose={handleCloseNavMenu}
+        sx={{
+          "& 	.MuiDrawer-paper": {
+            width: "100%",
+          },
+          display: { xs: "block", md: "none" },
+        }}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+      >
+        <AppBar color="inherit" elevation={1} position="static" {...rest}>
+          <Container maxWidth="xl">
+            <Toolbar
+              disableGutters
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  display: { xs: "flex", md: "none" },
+                  justifyContent: "flex-end",
+                  alignItems: "flex-start",
+                }}
+              >
+                <IconButton
+                  size="large"
+                  aria-label="close drawer"
+                  onClick={handleCloseNavMenu}
+                  color="inherit"
+                >
+                  <CloseIcon />
+                </IconButton>
+              </Box>
+            </Toolbar>
+          </Container>
+        </AppBar>
+        <DrawerLinks pages={pages} />
+      </Drawer>
+    </>
   );
 };
 export default NavBar;

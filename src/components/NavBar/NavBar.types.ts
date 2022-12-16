@@ -1,4 +1,5 @@
 import { AppBarProps } from "@mui/material";
+import { MenuItem } from "components/DropdownMenuItem/DropdownMenuItem.types";
 // Generated with util/create-component.js
 export interface NavBarProps extends AppBarProps {
   /**
@@ -16,8 +17,5 @@ export interface NavBarProps extends AppBarProps {
   /**
    * The pages to be displayed in the NavBar.
    */
-  pages: {
-    title: string;
-    link: string;
-  }[];
+  pages: MenuItem[];
 }
