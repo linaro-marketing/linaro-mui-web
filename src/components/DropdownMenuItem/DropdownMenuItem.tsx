@@ -3,7 +3,7 @@ import React, { useCallback, useRef } from "react";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-
+import Linked from "components/Linked/Linked";
 import { DropdownMenuItemProps } from "./DropdownMenuItem.types";
 const DropdownMenuItem: React.FC<DropdownMenuItemProps> = ({
   menuItem,
@@ -21,16 +21,13 @@ const DropdownMenuItem: React.FC<DropdownMenuItemProps> = ({
     setMenuShowingDropdown("");
   }, [setMenuShowingDropdown]);
 
-  const subMenusNodes = subMenus?.map((subMenuItem) => {
+  const subMenusNodes = subMenus?.map((subMenuItem, index) => {
     return (
-      <MenuItem
-        onClick={() => {
-          console.log("second level menu tiem click");
-        }}
-        key={subMenuItem.title}
-      >
-        {subMenuItem.title}
-      </MenuItem>
+      <Linked to={subMenuItem.pathname} key={index}>
+        <MenuItem key={index} component="div">
+          {subMenuItem.title}
+        </MenuItem>
+      </Linked>
     );
   });
   return (
@@ -69,6 +66,9 @@ const DropdownMenuItem: React.FC<DropdownMenuItemProps> = ({
           onMouseLeave: () => {
             closeSubMenu();
           },
+        }}
+        sx={{
+          marginTop: 1,
         }}
         anchorEl={buttonRef.current}
         open={menuShowingDropdown === menuItem.title}
