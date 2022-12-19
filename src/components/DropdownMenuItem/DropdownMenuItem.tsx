@@ -5,12 +5,22 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import Linked from "components/Linked/Linked";
 import { DropdownMenuItemProps } from "./DropdownMenuItem.types";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import MegaMenuContent from "components/MegaMenuContent/MegaMenuContent";
+import { Fade, Slide, Grow, Zoom } from "@mui/material";
+/**
+ *
+ * @param {DropdownMenuItemProps} object props
+ * @returns {React.Component} DropdownMenuItem
+ */
 const DropdownMenuItem: React.FC<DropdownMenuItemProps> = ({
   menuItem,
   menuShowingDropdown,
   setMenuShowingDropdown,
 }) => {
-  const { title, subMenus } = menuItem;
+  const { title, subMenus = null, megaMenuContent = null } = menuItem;
   const buttonRef = useRef<null | HTMLButtonElement>(null);
 
   const showSubMenu = useCallback(() => {
@@ -30,6 +40,7 @@ const DropdownMenuItem: React.FC<DropdownMenuItemProps> = ({
       </Linked>
     );
   });
+  const CustomSlide = <Slide direction="up" />;
   return (
     <>
       <Button
@@ -43,17 +54,13 @@ const DropdownMenuItem: React.FC<DropdownMenuItemProps> = ({
         }}
         color="inherit"
         onClick={() => {
-          if (!menuItem.subMenus) {
-            console.log("first level menu click");
-          }
+          showSubMenu();
         }}
         onMouseLeave={() => {
           setMenuShowingDropdown("");
         }}
         onMouseEnter={() => {
-          if (menuItem.subMenus) {
-            showSubMenu();
-          }
+          showSubMenu();
         }}
       >
         {title}
@@ -66,15 +73,23 @@ const DropdownMenuItem: React.FC<DropdownMenuItemProps> = ({
           onMouseLeave: () => {
             closeSubMenu();
           },
+          elevation: 1,
+          sx: {
+            border: (theme) => `1px solid ${theme.palette.text.primary}`,
+          },
         }}
         sx={{
           marginTop: 1,
         }}
+        TransitionComponent={Fade}
         anchorEl={buttonRef.current}
         open={menuShowingDropdown === menuItem.title}
         onClose={closeSubMenu}
       >
-        {subMenusNodes}
+        <>
+          {megaMenuContent && <MegaMenuContent content={megaMenuContent!} />}
+          {subMenus && subMenusNodes}
+        </>
       </Menu>
     </>
   );
