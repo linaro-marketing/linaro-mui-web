@@ -10,6 +10,7 @@ import { useTheme } from "@mui/material/styles";
 import Linked from "components/Linked/Linked";
 import { DrawerLinksProps } from "./DrawerLinks.types";
 import { dashboardLinksIconMapper } from "lib/icons";
+import MegaMenuContent from "components/MegaMenuContent/MegaMenuContent";
 const DrawerLinks: React.FC<DrawerLinksProps> = ({ pages }) => {
   const [dropdownToggleVals, setDropdownToggleVals] = useState<{
     [key: string]: boolean;
@@ -33,7 +34,7 @@ const DrawerLinks: React.FC<DrawerLinksProps> = ({ pages }) => {
       {pages.map((item, index) => {
         return (
           <div key={index}>
-            {item?.subMenus ? (
+            {item?.subMenus || item?.megaMenuContent ? (
               <>
                 <ListItem
                   button
@@ -56,23 +57,28 @@ const DrawerLinks: React.FC<DrawerLinksProps> = ({ pages }) => {
                   key={index}
                   unmountOnExit
                 >
-                  <List component="div" disablePadding>
-                    {item.subMenus.map((subItem, index) => {
-                      return (
-                        <Linked to={subItem.pathname} key={index}>
-                          <ListItem
-                            button
-                            component="a"
-                            sx={{
-                              paddingLeft: (theme) => theme.spacing(4),
-                            }}
-                          >
-                            <ListItemText primary={subItem.title} />
-                          </ListItem>
-                        </Linked>
-                      );
-                    })}
-                  </List>
+                  {item?.megaMenuContent && (
+                    <MegaMenuContent content={item.megaMenuContent!} />
+                  )}
+                  {item?.subMenus && (
+                    <List component="div" disablePadding>
+                      {item.subMenus.map((subItem, index) => {
+                        return (
+                          <Linked to={subItem.pathname} key={index}>
+                            <ListItem
+                              button
+                              component="a"
+                              sx={{
+                                paddingLeft: (theme) => theme.spacing(4),
+                              }}
+                            >
+                              <ListItemText primary={subItem.title} />
+                            </ListItem>
+                          </Linked>
+                        );
+                      })}
+                    </List>
+                  )}
                 </Collapse>
               </>
             ) : (

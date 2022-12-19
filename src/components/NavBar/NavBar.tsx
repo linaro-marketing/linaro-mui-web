@@ -143,7 +143,7 @@ const NavBar: React.FunctionComponent<NavBarProps> = ({
                       </Button>
                     </Linked>
                   );
-                } else if (page?.subMenus) {
+                } else if (page?.subMenus || page?.megaMenuContent) {
                   return (
                     <DropdownMenuItem
                       menuItem={page}

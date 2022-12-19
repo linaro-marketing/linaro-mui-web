@@ -55,28 +55,52 @@ const examplePages = [
   },
   {
     title: "Membership",
-    subMenus: [
-      {
-        title: "Membership Overview",
-        pathname: "/membership/",
-      },
-      {
-        title: "Group Membership",
-        pathname: "/membership/groups/",
-      },
-      {
-        title: "Projects",
-        pathname: "/projects/",
-      },
-      {
-        title: "Windows on Arm Group",
-        pathname: "/windows-on-arm/",
-      },
-      {
-        title: "Community Projects",
-        pathname: "/community-projects/",
-      },
-    ],
+    type: "megamenu",
+    megaMenuContent: {
+      sections: [
+        {
+          title: "Core Technologies",
+          options: [
+            {
+              title: "Client Devices",
+              description:
+                "Client devices are the most common type of device in the world.",
+              pathname: "/client-devices/",
+            },
+            {
+              title: "Cloud Computing & Servers",
+              description:
+                "Cloud computing is the on-demand delivery of IT resources.",
+              pathname: "/cloud-computing-and-servers/",
+            },
+            {
+              title: "Servers",
+              description:
+                "Servers are the backbone of the cloud computing infrastructure.",
+              pathname: "/client-devices/",
+            },
+            {
+              title: "Client Devices",
+              description:
+                "Client devices are the most common type of device in the world.",
+              pathname: "/client-devices/",
+            },
+            {
+              title: "Cloud Computing & Servers",
+              description:
+                "Cloud computing is the on-demand delivery of IT resources.",
+              pathname: "/cloud-computing-and-servers/",
+            },
+            {
+              title: "Servers",
+              description:
+                "Servers are the backbone of the cloud computing infrastructure.",
+              pathname: "/client-devices/",
+            },
+          ],
+        },
+      ],
+    },
   },
   {
     title: "Services",
