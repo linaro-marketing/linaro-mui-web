@@ -9,7 +9,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import MegaMenuContent from "components/MegaMenuContent/MegaMenuContent";
-import { Fade, Slide, Grow, Zoom } from "@mui/material";
+import { Fade } from "@mui/material";
 /**
  *
  * @param {DropdownMenuItemProps} object props
@@ -40,7 +40,6 @@ const DropdownMenuItem: React.FC<DropdownMenuItemProps> = ({
       </Linked>
     );
   });
-  const CustomSlide = <Slide direction="up" />;
   return (
     <>
       <Button
@@ -86,10 +85,8 @@ const DropdownMenuItem: React.FC<DropdownMenuItemProps> = ({
         open={menuShowingDropdown === menuItem.title}
         onClose={closeSubMenu}
       >
-        <>
-          {megaMenuContent && <MegaMenuContent content={megaMenuContent!} />}
-          {subMenus && subMenusNodes}
-        </>
+        {megaMenuContent && <MegaMenuContent content={megaMenuContent} />}
+        {subMenus && subMenusNodes}
       </Menu>
     </>
   );
