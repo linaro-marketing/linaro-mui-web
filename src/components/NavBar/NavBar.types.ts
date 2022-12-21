@@ -18,4 +18,12 @@ export interface NavBarProps extends AppBarProps {
    * The pages to be displayed in the NavBar.
    */
   pages: MenuItem[];
+  /**
+   * Dark mode toggle.
+   */
+  themeMode?: string;
+  /**
+   * The function to be called when the theme mode is toggled.
+   */
+  toggleTheme?: () => void;
 }

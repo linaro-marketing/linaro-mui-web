@@ -14,6 +14,7 @@ import Linked from "components/Linked/Linked";
 import DropdownMenuItem from "components/DropdownMenuItem/DropdownMenuItem";
 import DrawerLinks from "components/DrawerLinks/DrawerLinks";
 import Drawer from "@mui/material/Drawer";
+import DarkModeToggle from "components/DarkModeToggle/DarkModeToggle";
 
 const NavBarLogo = ({ logo, title }: { logo?: string; title: string }) => {
   return (
@@ -63,6 +64,8 @@ const NavBar: React.FunctionComponent<NavBarProps> = ({
   pages,
   logoLink,
   logo,
+  toggleTheme,
+  themeMode = null,
   title = "Linaro",
   ...rest
 }) => {
@@ -168,6 +171,13 @@ const NavBar: React.FunctionComponent<NavBarProps> = ({
                   );
                 }
               })}
+              {themeMode && (
+                <DarkModeToggle
+                  variant="icon"
+                  toggleTheme={toggleTheme!}
+                  themeMode={themeMode}
+                />
+              )}
             </Box>
           </Toolbar>
         </Container>

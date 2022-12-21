@@ -208,6 +208,9 @@ export const Primary = () => (
     logoLink="/"
     color="primary"
     pages={examplePages}
+    darkModeToggle
+    toggleTheme={() => {}}
+    themeMode="dark"
   />
 );
 Primary.parameters = {
@@ -219,6 +222,9 @@ export const Secondary = () => (
     logoLink="/"
     logo="https://www.linaro.org/assets/images/Linaro-Logo.svg"
     pages={examplePages}
+    darkModeToggle
+    toggleTheme={() => {}}
+    themeMode="dark"
   />
 );
 Secondary.parameters = {
