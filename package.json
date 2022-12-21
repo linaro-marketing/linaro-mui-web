@@ -33,6 +33,7 @@
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
+    "@badrap/bar-of-progress": "^0.2.2",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mdx-js/react": "^2.1.2",
@@ -64,6 +65,7 @@
     "jsdom": "^20.0.3",
     "next": "^13.0.6",
     "next-seo": "^5.15.0",
+    "notistack": "^2.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
@@ -84,6 +86,5 @@
   "files": [
     "build"
   ],
-  "types": "build/index.d.ts",
-  "dependencies": {}
+  "types": "build/index.d.ts"
 }
