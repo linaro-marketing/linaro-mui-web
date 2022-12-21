@@ -6,10 +6,7 @@ import dts from "rollup-plugin-dts";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 
 const packageJson = require("./package.json");
-const globals = {
-  react: "React",
-  "react-dom": "ReactDOM",
-};
+
 export default [
   {
     input: "src/index.ts",
@@ -34,5 +31,11 @@ export default [
       typescript({ tsconfig: "./tsconfig.json" }),
       postcss(),
     ],
+  },
+  {
+    // path to your declaration files root
+    input: "./build/build/index.d.ts",
+    output: [{ file: "build/index.d.ts", format: "es" }],
+    plugins: [dts()],
   },
 ];
