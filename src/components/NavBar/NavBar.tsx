@@ -66,6 +66,7 @@ const NavBar: React.FunctionComponent<NavBarProps> = ({
   logo,
   toggleTheme,
   themeMode = null,
+  darkModeToggle,
   title = "Linaro",
   ...rest
 }) => {
@@ -149,6 +150,7 @@ const NavBar: React.FunctionComponent<NavBarProps> = ({
                 } else if (page?.subMenus || page?.megaMenuContent) {
                   return (
                     <DropdownMenuItem
+                      key={index}
                       menuItem={page}
                       menuShowingDropdown={menuShowingDropdown}
                       setMenuShowingDropdown={handleMenuShowingDropdownChange}

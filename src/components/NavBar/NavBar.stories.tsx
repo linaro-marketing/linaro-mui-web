@@ -210,7 +210,7 @@ export const Primary = () => (
     pages={examplePages}
     darkModeToggle
     toggleTheme={() => {}}
-    themeMode="dark"
+    themeMode="light"
   />
 );
 Primary.parameters = {
@@ -224,7 +224,7 @@ export const Secondary = () => (
     pages={examplePages}
     darkModeToggle
     toggleTheme={() => {}}
-    themeMode="dark"
+    themeMode="light"
   />
 );
 Secondary.parameters = {

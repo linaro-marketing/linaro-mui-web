@@ -1,0 +1,3 @@
+[submodule "linaro-mui-web"]
+	path = linaro-mui-web
+	url = git@github.com:linaro-marketing/linaro-mui-web.git

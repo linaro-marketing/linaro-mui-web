@@ -22,6 +22,7 @@ export interface NavBarProps extends AppBarProps {
    * Dark mode toggle.
    */
   themeMode?: string;
+  darkModeToggle?:boolean;
   /**
    * The function to be called when the theme mode is toggled.
    */
